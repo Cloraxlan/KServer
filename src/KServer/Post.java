@@ -20,6 +20,3 @@ public class Post extends Path{
     
 
 }
-public interface PostAction{
-    void action(String responce);
-}
