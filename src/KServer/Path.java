@@ -86,29 +86,25 @@ public class Path{
 }
     //Switches data path and loads
     
-    /*public void load(String dataPath){
+    public void load(String dataPath){
         this.external = true;
         this.dataPath = dataPath;
-        FileReader fr;
         try{
-            fr = 
-            new FileReader(this.dataPath); 
-            int i; 
-            this.data = "";
+            File fi = new File(this.dataPath);
+            
             try{
-                while ((i=fr.read()) != -1) {
-                    this.data += ((char) i);
-                } 
+                byte[] fileContent = Files.readAllBytes(fi.toPath());
+                this.data = fileContent;
             }
             catch(Throwable tr){
                 tr.printStackTrace();
-            }
+            } 
         }
         catch(Throwable tr){
             tr.printStackTrace();
         }
         
-    }*/
+    }
     public String getDataPath(){
         return this.dataPath;
     }
