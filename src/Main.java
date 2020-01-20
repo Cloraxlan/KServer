@@ -4,11 +4,13 @@ public class Main
 
  public static void main(String args[])
     {
-        Server server = new Server(8000, new Path[]{new Path("/","", "./test.txt", "text/html; charset=UTF-8")});
+        Path[] paths = {
+            new Path("/","", "./index.html", Path.HTML),
+            changeTime.getTime
+        };
+        Server server = new Server(8000, paths,new Post[]{new Post("/test", "{}", "" , Path.HTML, new changeTime())});
         server.start();
-
-  
- 
+        
 
     }
 }

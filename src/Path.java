@@ -4,6 +4,8 @@ public class Path{
     private String data;
     private String path;
     private String header;
+    public static final String HTML = "text/html; charset=UTF-8";
+    public static final String TXT = "text/plain; charset=UTF-8";
     private boolean loaded;
     // True if has external file, false if data in obj
     private boolean external;
@@ -96,6 +98,9 @@ public class Path{
     }
     public String getData(){
         return this.data;
+    }
+    public void setData(String data){
+        this.data = data;
     }
     public String getPath(){
         return this.path;
