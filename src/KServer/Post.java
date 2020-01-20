@@ -1,4 +1,4 @@
-package KServer;
+package kserver;
 
 public class Post extends Path{
     private String responce;

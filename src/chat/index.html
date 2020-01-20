@@ -1,0 +1,19 @@
+
+<p id="messages"></p>
+<input id="data" type="text">
+<button onclick="send()">Send</button>
+<script>
+    setInterval(function(){ 
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "/messages", false ); // false for synchronous request
+        xmlHttp.send( null );
+        document.getElementById("messages").innerHTML = xmlHttp.responseText;
+     }, 1000);
+     function send(){
+        let message = document.getElementById("data").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/send", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(message);
+     }
+</script>

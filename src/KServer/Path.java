@@ -1,4 +1,4 @@
-package KServer;
+package kserver;
 
 import java.io.*; 
 public class Path{
