@@ -1,3 +1,5 @@
+package KServer;
+
 public class Post extends Path{
     private String responce;
     private PostAction action;
@@ -18,6 +20,6 @@ public class Post extends Path{
     
 
 }
-interface PostAction{
+public interface PostAction{
     void action(String responce);
 }

@@ -1,3 +1,5 @@
+package KServer;
+
 import java.io.*; 
 public class Path{
     private String dataPath;
