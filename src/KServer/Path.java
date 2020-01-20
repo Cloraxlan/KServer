@@ -1,13 +1,23 @@
 package kserver;
-
+import java.nio.file.Files;
+import java.io.File;
 import java.io.*; 
 public class Path{
     private String dataPath;
-    private String data;
+    private byte[] data;
     private String path;
     private String header;
     public static final String HTML = "text/html; charset=UTF-8";
     public static final String TXT = "text/plain; charset=UTF-8";
+    public static final String PNG = "image/png";
+    public static final String JPG = "image/jpeg";
+    public static final String GIF = "image/gif";
+    public static final String TFF = "image/tiff";
+    public static final String MP4 = "video/mp4";
+    public static final String WEBM = "video/webm";
+    public static final String MP3 = "audio/mpeg";
+    public static final String WAV = "audio/x-wav";
+
     private boolean loaded;
     // True if has external file, false if data in obj
     private boolean external;
@@ -20,7 +30,11 @@ public class Path{
             load();
             this.loaded = true; 
         }else{
-            this.data = data;
+            try {
+                this.data = data.getBytes("UTF-8");;
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
             this.loaded = true;
             this.external = false;
 
@@ -39,7 +53,11 @@ public class Path{
             this.loaded = loaded; 
         }else{
             this.external = false;
-            this.data = data;
+            try {
+                this.data = data.getBytes("UTF-8");
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
             this.loaded = true;
         }
         this.header = header;
@@ -49,16 +67,12 @@ public class Path{
         if(this.dataPath == ""){
 
         }else{
-           FileReader fr;
             try{
-                fr = 
-                new FileReader(this.dataPath);
-                int i; 
-                this.data = "";
+                File fi = new File(this.dataPath);
+                
                 try{
-                    while ((i=fr.read()) != -1) {
-                        this.data += ((char) i);
-                    } 
+                    byte[] fileContent = Files.readAllBytes(fi.toPath());
+                    this.data = fileContent;
                 }
                 catch(Throwable tr){
                     tr.printStackTrace();
@@ -72,7 +86,7 @@ public class Path{
 }
     //Switches data path and loads
     
-    public void load(String dataPath){
+    /*public void load(String dataPath){
         this.external = true;
         this.dataPath = dataPath;
         FileReader fr;
@@ -94,15 +108,19 @@ public class Path{
             tr.printStackTrace();
         }
         
-    }
+    }*/
     public String getDataPath(){
         return this.dataPath;
     }
-    public String getData(){
+    public byte[] getData(){
         return this.data;
     }
     public void setData(String data){
-        this.data = data;
+        try {
+            this.data = data.getBytes("UTF-8");
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     }
     public String getPath(){
         return this.path;

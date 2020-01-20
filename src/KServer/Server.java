@@ -21,8 +21,8 @@ public class Server{
         }
         for(Path path: this.paths){
             server.createContext(path.getPath(), httpExchange ->
-            {
-                byte response[]= path.getData().getBytes("UTF-8");
+            { 
+                byte response[]= path.getData();
                 httpExchange.getResponseHeaders().add("Content-Type", path.getHeader());
                 httpExchange.sendResponseHeaders(200, response.length);
 
